@@ -16,12 +16,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const formSchema = z.object({
-  email: z.string().min(2, "chi mal min 2roos deesh geed bnshdee").max(50),
-  phonenumber: z.string().min(2).max(50),
-  password: z.string().min(2).max(50),
-  confirmpassword: z.string().min(2).max(50),
-});
+const formSchema = z
+  .object({
+    email: z.string().min(2, "chi mal min 2roos deesh geed bnshdee").max(50),
+    phonenumber: z.string().min(2).max(50),
+    password: z.string().min(2).max(50),
+    confirmpassword: z.string().min(2).max(50),
+  })
+  .refine((data) => data.password === data.confirmpassword, {
+    message: "Password таарахгүй байна",
+    path: ["confirmpassword"], // error confirm field дээр гарна
+  });
 
 export const Step2 = ({ next, prev }) => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -53,8 +58,7 @@ export const Step2 = ({ next, prev }) => {
             <Form {...form}>
               <form
                 className="space-y-8"
-                onSubmit={form.handleSubmit(onSubmit)}
-              >
+                onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                   control={form.control}
                   name="email"
@@ -92,7 +96,11 @@ export const Step2 = ({ next, prev }) => {
                     <FormItem>
                       <FormLabel>password</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Input
+                          type="password"
+                          placeholder="shadcn"
+                          {...field}
+                        />
                       </FormControl>
                       <FormDescription></FormDescription>
                       <FormMessage />
@@ -107,7 +115,11 @@ export const Step2 = ({ next, prev }) => {
                     <FormItem>
                       <FormLabel>Confirmpassword</FormLabel>
                       <FormControl>
-                        <Input placeholder="shadcn" {...field} />
+                        <Input
+                          type="password"
+                          placeholder="shadcn"
+                          {...field}
+                        />
                       </FormControl>
                       <FormDescription></FormDescription>
                       <FormMessage />
@@ -118,15 +130,13 @@ export const Step2 = ({ next, prev }) => {
                   <Button
                     type="button"
                     onClick={prev}
-                    className="bg-black text-white font-bold w-[60px] h-[44px]"
-                  >
+                    className="bg-black text-white font-bold w-[60px] h-[44px]">
                     Back
                   </Button>
 
                   <Button
                     type="submit"
-                    className="bg-black text-white font-bold w-[280px] h-[44px]"
-                  >
+                    className="bg-black text-white font-bold w-[280px] h-[44px]">
                     Continue 2/3
                   </Button>
                 </div>
