@@ -54,7 +54,7 @@ export const Step2 = ({
       <div className="w-screen h-screen flex justify-center items-center">
         <Card>
           <CardHeader>
-            <img src="/main 1.svg" className="w-[60px] h-[60px]" />
+            <img src="/Main 1.svg" className="w-[60px] h-[60px]" />
             <h1 className="text-2xl font-bold">Join us! 🤬</h1>
             <h1 className="text-gray-300 font-light">
               Please provide all current information accurately.
