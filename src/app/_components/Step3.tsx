@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const Step3 = ({ prev, next }) => {
+export const Step3 = ({ prev, next }: { prev: () => void; next: () => void }) => {
   const [image, setImage] = useState<string | null>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

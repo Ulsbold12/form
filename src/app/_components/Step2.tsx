@@ -25,10 +25,16 @@ const formSchema = z
   })
   .refine((data) => data.password === data.confirmpassword, {
     message: "Password таарахгүй байна",
-    path: ["confirmpassword"], // error confirm field дээр гарна
+    path: ["confirmpassword"],
   });
 
-export const Step2 = ({ next, prev }) => {
+export const Step2 = ({
+  next,
+  prev,
+}: {
+  next: () => void;
+  prev: () => void;
+}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

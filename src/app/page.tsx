@@ -56,7 +56,7 @@ const FormPage = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.4, ease: "easeOut" }}>
-              <Step4 prev={() => setStep(3)} />
+              <Step4 />
             </motion.div>
           )}
         </AnimatePresence>
